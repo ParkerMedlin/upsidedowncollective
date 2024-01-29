@@ -48,7 +48,7 @@ canvas {
     margin-bottom: 15px;
 }
 
-.headingContainer { 
+#headingContainer { 
     display: flex;
     letter-spacing: 6px;
     flex-direction: column;
@@ -79,6 +79,12 @@ canvas {
     .formDiv {
         width: 25vw; /* Set width to 25vw for larger screens */
     }
+}
+
+#usdLogo {
+    position: fixed;
+    left: 50%; /* Center the div horizontally */
+    transform: translateX(-50%); /* Shift it back by half its own width to truly center it */
 }
 
 button {

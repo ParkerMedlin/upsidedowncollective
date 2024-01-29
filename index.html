@@ -10,9 +10,11 @@
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
 <body>
-    <div class="headingContainer text-center">
-        <h1 id="usdHeader">upside down<br>collective</h1>
+    <div id="headingContainer" class="text-center">
+        <h1 id="usdHeader">UPSIDE DOWN<br>COLLECTIVE</h1>
+        
     </div>
+    <img src="static/media/USD_noBG.png" id="usdLogo">
     <div class="">
         <div class="formDiv">
             <div class="paragraphContainer text-center">
@@ -48,23 +50,6 @@
 </body>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Get the computed height of the headingContainer
-        var headingContainerHeight = document.querySelector('.headingContainer').offsetHeight;
-        // Set the margin-top of formDiv to the height of headingContainer
-        document.querySelector('.formDiv').style.marginTop = headingContainerHeight + 'px';
-        // Add this line to listen for touchstart events
-        document.addEventListener('touchstart', function(event) {
-            // Prevent the default mouse event handlers from firing
-            event.preventDefault();
-            // Call mouseClicked function for the first touch point
-            if (event.touches.length > 0) {
-                const touch = event.touches[0];
-                mouseClicked(touch.clientX, touch.clientY);
-            }
-        }, { passive: false }); // Set passive to false to allow preventDefault
-    });
-
     let clicks = [];
 
     function setup() {
@@ -134,6 +119,54 @@
             }
         }
     }
+    document.addEventListener("DOMContentLoaded", function() {
+        const headingContainer = document.querySelector('#headingContainer');
+        // Get the computed height of the headingContainer
+        var headingContainerHeight = headingContainer.offsetHeight;
+        // Set the margin-top of formDiv to the height of headingContainer
+        document.querySelector('.formDiv').style.marginTop = `${headingContainerHeight*1.1}px`;
+        document.getElementById('usdLogo').setAttribute("height", `${headingContainerHeight/4 }px`);
+        // Add this line to listen for touchstart events
+        document.addEventListener('touch', function(event) {
+            // Prevent the default mouse event handlers from firing
+            // event.preventDefault();
+            // Call mouseClicked function for the first touch point
+            if (event.touches.length > 0) {
+                let touch = event.touches[0];
+                mouseClicked(touch.clientX, touch.clientY);
+            }
+        }); 
+        // Set passive to false to allow preventDefault
+        const usdLogo = document.getElementById('usdLogo');
+        // Calculate the bottom position of the headingContainer
+        const headingBottom = (headingContainer.offsetHeight + headingContainer.offsetTop) * .75;
+        // Set the 'top' style attribute of usdLogo to be just below headingContainer
+        usdLogo.style.top = `${headingBottom}px`;
+        window.onload = function() {
+        function triggerClickOnUsdLogoCenter() {
+            const usdLogo = document.getElementById('usdLogo');
+            if (!usdLogo) return; // Exit if usdLogo is not found
+
+            const rect = usdLogo.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2 + window.scrollX;
+            const centerY = rect.top + rect.height / 2 + window.scrollY;
+
+            const clickEvent = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: true,
+                clientX: centerX,
+                clientY: centerY
+            });
+
+            usdLogo.dispatchEvent(clickEvent);
+        }
+
+        triggerClickOnUsdLogoCenter();
+    };
+        
+    });
+
 
 </script>
 
