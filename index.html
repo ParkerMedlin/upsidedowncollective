@@ -139,12 +139,11 @@
         document.getElementById('usdLogo').setAttribute("height", `${headingContainerHeight/4 }px`);
         // Add this line to listen for touchstart events
         document.addEventListener('touchstart', function(event) {
-            // Prevent the default mouse event handlers from firing
-            // event.preventDefault();
-            // // Call mouseClicked function for the first touch point
             if (event.touches.length > 0) {
                 let touch = event.touches[0];
-                mouseClicked(touch.clientX, touch.clientY);
+                // Directly push the touch coordinates and current time into the clicks array
+                clicks.push({x: touch.clientX, y: touch.clientY, time: millis()});
+                if (clicks.length > 3) clicks.shift(); // Keep only the last three clicks
             }
         }); 
         // Set passive to false to allow preventDefault
