@@ -8,12 +8,7 @@ body {
     align-items: center;
     min-height: 100vh; /* Make sure the body takes up at least the full viewport height */
     margin: 0; /* Remove default margin */
-}
-
-.bodyDiv {
-    display: flex;
-    justify-content: middle;
-    align-items: center;
+    padding: 0px;
 }
 
 .social-media-links {
@@ -23,15 +18,26 @@ body {
     transform: translateX(-50%); /* Shift it back by half its own width to truly center it */
     background-color: rgba(255, 255, 255, 0.25); /* Semi-transparent background */
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     display: inline-flex; /* Change to inline-flex to make the container as wide as its content */
     justify-content: center; /* Center the links horizontally */
     gap: 10px; /* Optional: adds some space between the icons */
 }
 
+.socialMediaIcon {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .paragraphContainer {
-    margin-bottom: 35px;
-    margin-top: 35px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+#buttonContainer {
+    display: flex;
+    justify-content: center;
 }
 
 #formTitle {
@@ -43,28 +49,35 @@ body {
     letter-spacing: 6px;
     flex-direction: column;
     color: white;
-    position: absolute; /* or 'absolute' if you don't want it to stick at the top on scroll */
+    position: fixed; /* or 'absolute' if you don't want it to stick at the top on scroll */
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.25); /* Optional: background color to make the text more readable */
-    z-index: 1000; /* Ensures the container stays on top of other content */
+    /* background-color: rgba(255, 255, 255, 0.25); /* Optional: background color to make the text more readable */
     padding-bottom: 15px;
     text-align: center;
 }
 
+#usdHeader {
+    font-size: 40px;
+}
+
 .formDiv {
-    background-color: rgba(128, 128, 128);
+    background-color: rgba(128, 128, 128, .5);
     color: white;
     border-radius: 12px;
-    padding: 25px;
-    padding-top: 12px;
+    padding: 10px;
+    width: 85vw;
+    margin: 2px;
 }
 
 button {
     color: black;
 }
 
+#formTitle {
+    font-size: 28px;
+}
 
 /* Style for form labels and inputs */
 .form-group label {
