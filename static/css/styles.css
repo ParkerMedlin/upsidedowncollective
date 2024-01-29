@@ -104,6 +104,7 @@ button {
     margin-bottom: 20px;
     border: none;
     border-radius: 4px;
+    font-size: 16px;
     box-sizing: border-box; /* To include padding in the width */
 }
 

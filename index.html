@@ -51,9 +51,18 @@
     document.addEventListener("DOMContentLoaded", function() {
         // Get the computed height of the headingContainer
         var headingContainerHeight = document.querySelector('.headingContainer').offsetHeight;
-
         // Set the margin-top of formDiv to the height of headingContainer
         document.querySelector('.formDiv').style.marginTop = headingContainerHeight + 'px';
+        // Add this line to listen for touchstart events
+        document.addEventListener('touchstart', function(event) {
+            // Prevent the default mouse event handlers from firing
+            event.preventDefault();
+            // Call mouseClicked function for the first touch point
+            if (event.touches.length > 0) {
+                const touch = event.touches[0];
+                mouseClicked(touch.clientX, touch.clientY);
+            }
+        }, { passive: false }); // Set passive to false to allow preventDefault
     });
 
     let clicks = [];
