@@ -141,7 +141,6 @@
         document.addEventListener('touchstart', function(event) {
             if (event.touches.length > 0) {
                 let touch = event.touches[0];
-                // Directly push the touch coordinates and current time into the clicks array
                 clicks.push({x: touch.clientX, y: touch.clientY, time: millis()});
                 if (clicks.length > 3) clicks.shift(); // Keep only the last three clicks
             }
