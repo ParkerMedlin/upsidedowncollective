@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="static/css/styles.css">
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-<body style='background: url("static/media/USD_Site_background.png") no-repeat;background-color: gray;background-size: cover;'>
+<body>
     <div class="headingContainer text-center">
         <h1 id="usdHeader">upside down<br>collective</h1>
     </div>
@@ -55,15 +55,77 @@
         // Set the margin-top of formDiv to the height of headingContainer
         document.querySelector('.formDiv').style.marginTop = headingContainerHeight + 'px';
     });
-    function setup() {
-      // This creates a canvas that fills the window
-      createCanvas(windowWidth, windowHeight);
-    }
-  
-    function draw() {
-      // Your drawing code goes here
 
+    let clicks = [];
+
+    function setup() {
+        createCanvas(windowWidth, windowHeight);
+        stroke(200); // Set line drawing color to white
+        strokeWeight(1);
+        noFill();
     }
+
+    function draw() {
+        background(0);
+        drawGravityGrid();
+        updateClicks();
+    }
+
+    function drawGravityGrid() {
+        const spacing = 20; // Space between grid lines
+        for (let x = 0; x < width; x += spacing) {
+            for (let y = 0; y < height; y += spacing) {
+                // Draw horizontal lines
+                drawDeformedLine(x, y, x + spacing, y);
+                // Draw vertical lines
+                drawDeformedLine(x, y, x, y + spacing);
+            }
+        }
+    }
+
+    function drawDeformedLine(x1, y1, x2, y2) {
+        let start = createVector(x1, y1);
+        let end = createVector(x2, y2);
+
+        clicks.forEach(click => {
+            let d = dist(click.x, click.y, (x1 + x2) / 2, (y1 + y2) / 2);
+            let maxDistance = dist(0, 0, width * 2, height *2);
+            let timeSinceClick = (millis() - click.time) * 0.0001; // Adjust time factor if needed
+            let decay = exp(-0.001 * (millis() - click.time)); // Decay factor that reduces intensity over time
+
+            // Adjust the propagation speed of the ripple effect based on distance
+            let propagationSpeed = .001; // Control the speed of the wave propagation
+            let delay = d * propagationSpeed; // Delay based on distance from the click
+
+            let rippleEffect = sin((d / (timeSinceClick / delay)) * 0.003) * 50 * decay; // Modified ripple effect with delay
+
+            rippleEffect = rippleEffect * (1 - d*2 / maxDistance); // Decrease effect based on distance from click
+
+            let angle = atan2(y1 - click.y, x1 - click.x);
+            start.x += rippleEffect * cos(angle);
+            start.y += rippleEffect * sin(angle);
+
+            angle = atan2(y2 - click.y, x2 - click.x);
+            end.x += rippleEffect * cos(angle);
+            end.y += rippleEffect * sin(angle);
+        });
+
+        line(start.x, start.y, end.x, end.y);
+    }
+
+    function mouseClicked() {
+        clicks.push({x: mouseX, y: mouseY, time: millis()});
+        if (clicks.length > 3) clicks.shift(); // Keep only the last three clicks
+    }
+
+    function updateClicks() {
+        for (let i = clicks.length - 1; i >= 0; i--) {
+            if (millis() - clicks[i].time > 10000) { // Ripple duration
+                clicks.splice(i, 1);
+            }
+        }
+    }
+
 </script>
 
 </html>

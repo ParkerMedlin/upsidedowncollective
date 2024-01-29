@@ -1,16 +1,20 @@
 body {
     font-family: 'Trebuchet MS', sans-serif;
     background-color: gray; 
-    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Make sure the body takes up at least the full viewport height */
+    /*min-height: 100vh; /* Make sure the body takes up at least the full viewport height */
     margin: 0; /* Remove default margin */
     padding: 0px;
 }
-
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
 .social-media-links {
     position: absolute;
     bottom: 0;
@@ -71,8 +75,15 @@ body {
     margin: 2px;
 }
 
+@media (min-width: 768px) {
+    .formDiv {
+        width: 25vw; /* Set width to 25vw for larger screens */
+    }
+}
+
 button {
     color: black;
+    background-color: ;
 }
 
 #formTitle {
