@@ -35,7 +35,7 @@
                 </div>
                 <!-- your other form fields go here -->
                 <div class="form-group" id="buttonContainer">
-                    <button type="submit" class="text-center">SUBMIT</button>
+                    <button type="submit" class="text-center" id="submitButton">SUBMIT</button>
                 </div>
                 
             </form>
@@ -125,7 +125,7 @@
     }
     document.addEventListener("DOMContentLoaded", function() {
         // Submit Button Event Listener
-        document.getElementById('submitBtn').addEventListener('click', function() {
+        document.getElementById('submitButton').addEventListener('click', function() {
             // Hide the form
             document.getElementById('submissionForm').style.display = 'none';
             // Show the Thank You message
