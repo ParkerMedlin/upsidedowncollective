@@ -1,0 +1,51 @@
+body {
+    background-color: gray; 
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Make sure the body takes up at least the full viewport height */
+    margin: 0; /* Remove default margin */
+}
+
+.bodyDiv {
+    display: flex;
+    justify-content: middle;
+    align-items: center;
+}
+
+.social-media-links {
+    position: fixed;
+    bottom: 0;
+    left: 50%; /* Center the div horizontally */
+    transform: translateX(-50%); /* Shift it back by half its own width to truly center it */
+    background-color: rgba(255, 255, 255, 0.25); /* Semi-transparent background */
+    text-align: center;
+    padding: 20px;
+    display: inline-flex; /* Change to inline-flex to make the container as wide as its content */
+    justify-content: center; /* Center the links horizontally */
+    gap: 10px; /* Optional: adds some space between the icons */
+}
+
+.headingContainer { 
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    position: fixed; /* or 'absolute' if you don't want it to stick at the top on scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.25); /* Optional: background color to make the text more readable */
+    z-index: 1000; /* Ensures the container stays on top of other content */
+}
+
+.formDiv {
+    background-color: rgba(128, 128, 128, 0.5);
+    color: white
+}
+
+button {
+    color: black;
+}
