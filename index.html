@@ -48,6 +48,13 @@
 </body>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the computed height of the headingContainer
+        var headingContainerHeight = document.querySelector('.headingContainer').offsetHeight;
+
+        // Set the margin-top of formDiv to the height of headingContainer
+        document.querySelector('.formDiv').style.marginTop = headingContainerHeight + 'px';
+    });
     function setup() {
       // This creates a canvas that fills the window
       createCanvas(windowWidth, windowHeight);
@@ -55,7 +62,7 @@
   
     function draw() {
       // Your drawing code goes here
-      
+
     }
 </script>
 
