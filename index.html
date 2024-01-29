@@ -40,6 +40,10 @@
                 
             </form>
         </div>
+        <!-- Thank You Message Container, initially hidden -->
+        <div id="thankYouMessage" style="display: none;">
+            <h1>Thank You!</h1>
+        </div>
         <div class="social-media-links">
             <a href="https://soundcloud.com/upsidedowncollective" target="_blank"><img src="static/media/link_icons/soundcloud_icon.png" alt="soundcloud" class="socialMediaIcon" height="30px"></a>
             <a href="https://upsidedowncollective.bandcamp.com/" target="_blank"><img src="static/media/link_icons/bandcamp_icon.png" alt="bandcamp" class="socialMediaIcon" height="30px"></a>
@@ -120,6 +124,13 @@
         }
     }
     document.addEventListener("DOMContentLoaded", function() {
+        // Submit Button Event Listener
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            // Hide the form
+            document.getElementById('submissionForm').style.display = 'none';
+            // Show the Thank You message
+            document.getElementById('thankYouMessage').style.display = 'block';
+        });
         const headingContainer = document.querySelector('#headingContainer');
         // Get the computed height of the headingContainer
         var headingContainerHeight = headingContainer.offsetHeight;
@@ -127,16 +138,14 @@
         document.querySelector('.formDiv').style.marginTop = `${headingContainerHeight*1.1}px`;
         document.getElementById('usdLogo').setAttribute("height", `${headingContainerHeight/4 }px`);
         // Add this line to listen for touchstart events
-        document.addEventListener('touch', function(event) {
+        document.addEventListener('touchstart', function(event) {
             // Prevent the default mouse event handlers from firing
             // event.preventDefault();
-            let touch = event.touches[0];
-            mouseClicked(touch.clientX, touch.clientY);
             // // Call mouseClicked function for the first touch point
-            // if (event.touches.length > 0) {
-            //     let touch = event.touches[0];
-            //     mouseClicked(touch.clientX, touch.clientY);
-            // }
+            if (event.touches.length > 0) {
+                let touch = event.touches[0];
+                mouseClicked(touch.clientX, touch.clientY);
+            }
         }); 
         // Set passive to false to allow preventDefault
         const usdLogo = document.getElementById('usdLogo');
