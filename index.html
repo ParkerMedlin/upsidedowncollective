@@ -66,7 +66,7 @@
     }
 
     function drawGravityGrid() {
-        const spacing = 20; // Space between grid lines
+        const spacing = 25; // Space between grid lines
         for (let x = 0; x < width; x += spacing) {
             for (let y = 0; y < height; y += spacing) {
                 // Draw horizontal lines
@@ -130,11 +130,13 @@
         document.addEventListener('touch', function(event) {
             // Prevent the default mouse event handlers from firing
             // event.preventDefault();
-            // Call mouseClicked function for the first touch point
-            if (event.touches.length > 0) {
-                let touch = event.touches[0];
-                mouseClicked(touch.clientX, touch.clientY);
-            }
+            let touch = event.touches[0];
+            mouseClicked(touch.clientX, touch.clientY);
+            // // Call mouseClicked function for the first touch point
+            // if (event.touches.length > 0) {
+            //     let touch = event.touches[0];
+            //     mouseClicked(touch.clientX, touch.clientY);
+            // }
         }); 
         // Set passive to false to allow preventDefault
         const usdLogo = document.getElementById('usdLogo');
@@ -142,6 +144,7 @@
         const headingBottom = (headingContainer.offsetHeight + headingContainer.offsetTop) * .75;
         // Set the 'top' style attribute of usdLogo to be just below headingContainer
         usdLogo.style.top = `${headingBottom}px`;
+
         window.onload = function() {
         function triggerClickOnUsdLogoCenter() {
             const usdLogo = document.getElementById('usdLogo');
